@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hora do dia</title>
+    <style>
+        body{
+            background-image: url('_20df547e-34d4-4800-a2b9-897d98ab9f10.jpeg');
+            background-size: 1024px 1024px;
+            background-position: center bottom;
+        } 
+        div#imgback{
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #eec590;
+            padding: 200px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+        }  
+        div#imgCircle{
+            width: 180px; /* Defina o tamanho desejado para a imagem */
+            height: 180px;
+            border-radius: 50%; /* Torna a borda da imagem redonda */
+            overflow: hidden; /* Garante que a imagem seja cortada para se ajustar ao formato de círculo */
+            display: inline-block; /* Permite centralizar verticalmente */
+            margin-top: -100px; /* Defina o tamanho desejado para a imagem */
+            box-shadow: 0 0 10px rgba(0, 0, 0,10);
+        }
+        #imgCircle{
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+        #horas{
+            font: bold 30px Arial;
+            color: rgb(170, 32, 32);
+            position: absolute;
+            top: 55%;
+            left: 34%;
+        }
+        #titulo{
+            font: bold 30px Arial;
+            color: white;
+            position: absolute;
+            top: -40%;
+            left: 24%;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="imgback">
+        <p id="titulo">HORA DO DIA</p>
+        <div id="imgCircle">
+            <img src="R (1).jpeg" alt="imagem">
+            
+        </div>
+        <p id="horas">00:00:00</p>
+        
+    </div>
+    <script>
+        var hora = ''
+        function atualizarTexto(){
+            var data = new Date()
+            hora = data.getHours() < 10 ? '0' + data.getHours() : data.getHours()
+            var minutos = data.getMinutes() < 10 ? '0' + data.getMinutes() : data.getMinutes()
+            var segundos = data.getSeconds() < 10 ? '0' + data.getSeconds() : data.getSeconds()
+            var horario = `${hora}:${minutos}:${segundos}`
+            var text = document.getElementById('horas')
+            text.innerText = horario
+            return hora;
+            
+        }
+        
+        if(atualizarTexto() >=18){
+            var body = document.querySelector('body')
+            var novaImagem = 'url(_f972280c-d210-4a07-8ea0-d9b844849de2.jpeg)';
+            body.style.backgroundImage = novaImagem
+            var Div = document.getElementById('imgback')
+            Div.style.backgroundColor = '#201D48'
+            var TextDiv = document.getElementById('horas')
+            TextDiv.style.color = 'white';
+        }else if(atualizarTexto() < 18 && atualizarTexto() > 12){
+            var body = document.querySelector('body')
+            var novaImagem = 'url(_65e82f10-fa9e-4882-a3c5-936956c7a2eb.jpeg)';
+            body.style.backgroundImage = novaImagem
+            var Div = document.getElementById('imgback')
+            Div.style.backgroundColor = '#DBBB3D'
+        }else {
+            var body = document.querySelector('body')
+            var novaImagem = 'url(_20df547e-34d4-4800-a2b9-897d98ab9f10.jpeg)';
+            body.style.backgroundImage = novaImagem 
+        }
+        setInterval(atualizarTexto, 1000);
+       
+
+
+       
+    </script>
+    
+</body>
+</html>
